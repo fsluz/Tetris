@@ -6,6 +6,7 @@ import tetris.domain.Partida;
 import tetris.engine.*;
 import tetris.domain.Tetromino;
 import tetris.domain.Tabuleiro;
+import tetris.persistence.RankingsManager;
 
 public class TelaPrincipal extends JFrame {
     private final Partida partida;
@@ -53,6 +54,14 @@ public class TelaPrincipal extends JFrame {
         if (partida.isGameOver()) {
             timerUI.stop();
             engine.parar();
+            // salva ranking (prioriza DB, faz fallback para arquivo)
+            try {
+                RankingsManager rm = new RankingsManager();
+                String nome = partida.getJogador() != null ? partida.getJogador().getNome() : "Desconhecido";
+                int pontos = partida.getSistemaPontuacao() != null ? partida.getSistemaPontuacao().getPontos() : 0;
+                rm.saveScore(nome, pontos);
+            } catch (Throwable ignored) {}
+
             JOptionPane.showMessageDialog(this, "Game Over!\nPontuação final: " + partida.getSistemaPontuacao().getPontos());
             dispose();
             return;

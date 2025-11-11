@@ -48,6 +48,10 @@ public class InputHandler implements KeyListener {
                 }
             }
             case KeyEvent.VK_SPACE -> partida.hardDrop(); // Hard drop - coloca a peça instantaneamente
+            case KeyEvent.VK_C -> {
+                // Swap with held piece
+                partida.swapHold();
+            }
         }
     }
 

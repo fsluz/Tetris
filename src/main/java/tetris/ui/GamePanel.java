@@ -33,6 +33,8 @@ public class GamePanel extends JPanel {
         // Fundo preto
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // No grid background per user request — keep clean background (scanlines + vignette below provide retro look)
         
         boolean[][] grid = tabuleiro.getGrid();
         Color[][] coresGrid = tabuleiro.getCoresGrid();

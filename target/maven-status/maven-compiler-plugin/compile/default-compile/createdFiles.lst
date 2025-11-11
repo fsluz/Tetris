@@ -1,6 +1,7 @@
 tetris\domain\TetrominoFactory$TetrominoL.class
 tetris\ui\TelaPrincipal.class
 tetris\persistence\TesteBD.class
+tetris\ui\RankingsDialog.class
 tetris\domain\TetrominoFactory$TetrominoS.class
 tetris\domain\SistemaPontuacao.class
 tetris\domain\Tetromino.class
@@ -15,10 +16,12 @@ tetris\domain\TetrominoFactory$TetrominoZ.class
 tetris\ui\ScorePanel.class
 tetris\engine\ThreadLoop.class
 tetris\domain\TipoTetromino.class
+tetris\persistence\RankingsManager.class
 tetris\engine\GameEngine.class
 tetris\domain\Jogador.class
 tetris\ui\NextPiecesPanel.class
 tetris\engine\InputHandler.class
+tetris\ui\MenuPrincipal.class
 tetris\engine\NetworkHandler.class
 tetris\domain\Tabuleiro.class
 tetris\domain\TetrominoFactory$1.class

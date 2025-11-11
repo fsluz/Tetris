@@ -11,6 +11,7 @@ public class Partida implements Serializable {
     private final Tabuleiro tabuleiro;
     private final SistemaPontuacao sistemaPontuacao;
     private Tetromino pecaAtual;
+    private Tetromino heldPiece = null;
     private final Queue<Tetromino> proximasPecas;
     private final List<TipoTetromino> historicoPecas;
     private boolean gameOver = false;
@@ -154,6 +155,30 @@ public class Partida implements Serializable {
             gameOver = true;
         }
     }
+
+    /**
+     * Swap current piece with held piece. If no held piece, current piece is stored and next piece is spawned.
+     * After swapping, the new current piece is placed at the default spawn position.
+     */
+    public void swapHold() {
+        if (pecaAtual == null) return;
+        if (heldPiece == null) {
+            // store current, spawn next
+            heldPiece = pecaAtual;
+            pecaAtual = proximasPecas.poll();
+            if (pecaAtual == null) pecaAtual = TetrominoFactory.gerarAleatorio();
+            pecaAtual.setPosicao(new Posicao(4, 0));
+        } else {
+            // swap current and held
+            Tetromino temp = pecaAtual;
+            pecaAtual = heldPiece;
+            heldPiece = temp;
+            // reset position of current
+            pecaAtual.setPosicao(new Posicao(4, 0));
+        }
+    }
+
+    public Tetromino getHeldPiece() { return heldPiece; }
 
     public Jogador getJogador() { return jogador; }
     public Tabuleiro getTabuleiro() { return tabuleiro; }
